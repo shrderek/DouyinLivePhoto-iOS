@@ -1,0 +1,45 @@
+name: Build IPA (unsigned)
+
+on:
+  workflow_dispatch:        # 手动在 Actions 页点一下即可编译
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-latest   # GitHub 免费提供云 Mac
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build unsigned archive
+        run: |
+          xcodebuild -project DouyinLivePhoto.xcodeproj \
+            -target DouyinLivePhoto \
+            -configuration Release \
+            -archivePath build/DouyinLivePhoto.xcarchive \
+            -destination 'generic/platform=iOS' \
+            -allowProvisioningUpdates \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            archive
+
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p build/Payload
+          cp -r "build/DouyinLivePhoto.xcarchive/Products/Applications/DouyinLivePhoto.app" build/Payload/
+          cd build
+          zip -r DouyinLivePhoto.ipa Payload
+          cd ..
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DouyinLivePhoto-unsigned
+          path: build/DouyinLivePhoto.ipa

@@ -1,0 +1,16 @@
+# 构建产物
+build/
+*.xcarchive
+*.ipa
+DerivedData/
+*.xcuserdata/
+
+# 本地配置 / 密钥（绝不可提交）
+config.json
+*.xcconfig
+.env
+.secrets
+
+# 系统 / 编辑器
+.DS_Store
+*.swp

@@ -1,0 +1,28 @@
+name: DouyinLivePhoto
+options:
+  bundleIdPrefix: com.example.douyinlivephoto
+  deploymentTarget:
+    iOS: "15.0"
+targets:
+  DouyinLivePhoto:
+    type: application
+    platform: iOS
+    sources:
+      - path: DouyinLivePhoto
+      - path: Shared
+    dependencies:
+      - target: DouyinLivePhotoShareExtension   # 让共享扩展被打进 App 包
+    info:
+      path: DouyinLivePhoto/Info.plist
+    entitlements:
+      path: DouyinLivePhoto/DouyinLivePhoto.entitlements
+  DouyinLivePhotoShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: DouyinLivePhotoShareExtension
+      - path: Shared
+    info:
+      path: DouyinLivePhotoShareExtension/Info.plist
+    entitlements:
+      path: DouyinLivePhotoShareExtension/DouyinLivePhotoShareExtension.entitlements
