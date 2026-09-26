@@ -46,7 +46,7 @@ public final class LivePhotoSaver {
         // 2) 在照片库变更块里写入（live 用 .photo + .pairedVideo 配对）
         try await PHPhotoLibrary.shared().performChanges {
             for l in locals {
-                let req = PHAssetCreationRequest.creationRequestForAsset()
+                let req = PHAssetCreationRequest.forAsset()
                 switch l.kind {
                 case .video:
                     req.addResource(with: .video, fileURL: l.still, options: nil)

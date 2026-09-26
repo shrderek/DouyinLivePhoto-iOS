@@ -16,7 +16,7 @@ public final class MediaDownloader {
     }
 
     public func data(from url: URL) async throws -> Data {
-        var req = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
+        let req = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         let (data, _) = try await session.data(for: req)
         return data
     }
