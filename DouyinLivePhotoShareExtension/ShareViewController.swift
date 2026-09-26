@@ -1,9 +1,11 @@
 import UIKit
 
 /// 共享扩展：从系统分享面板接收抖音链接（URL 或文本），本地解析并保存
-class ShareViewController: UIViewController, NSExtensionRequestHandling {
+/// 注：iOS 26 SDK 中 UIViewController 已自带 NSExtensionRequestHandling 遵循与 beginRequest，
+/// 故不再显式声明协议，方法加 override。
+class ShareViewController: UIViewController {
 
-    func beginRequest(with context: NSExtensionContext) {
+    override func beginRequest(with context: NSExtensionContext) {
         guard let item = context.inputItems.first as? NSExtensionItem else {
             context.completeRequest(returningItems: nil, completionHandler: nil)
             return
