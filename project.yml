@@ -26,3 +26,8 @@ targets:
       path: DouyinLivePhotoShareExtension/Info.plist
     entitlements:
       path: DouyinLivePhotoShareExtension/DouyinLivePhotoShareExtension.entitlements
+schemes:
+  DouyinLivePhoto:
+    build:
+      targets:
+        DouyinLivePhoto: all

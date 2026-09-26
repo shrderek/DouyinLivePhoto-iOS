@@ -20,7 +20,7 @@ jobs:
       - name: Build unsigned archive
         run: |
           xcodebuild -project DouyinLivePhoto.xcodeproj \
-            -target DouyinLivePhoto \
+            -scheme DouyinLivePhoto \
             -configuration Release \
             -archivePath build/DouyinLivePhoto.xcarchive \
             -destination 'generic/platform=iOS' \
