@@ -13,6 +13,7 @@ targets:
     dependencies:
       - target: DouyinLivePhotoShareExtension   # 让共享扩展被打进 App 包
     info:
+      path: DouyinLivePhoto/Info.plist
       properties:
         NSPhotoLibraryAddUsageDescription: 用于保存下载的抖音视频、图片与实况图
         UILaunchScreen: {}
@@ -25,6 +26,7 @@ targets:
       - path: DouyinLivePhotoShareExtension
       - path: Shared
     info:
+      path: DouyinLivePhotoShareExtension/Info.plist
       properties:
         NSExtension:
           NSExtensionPointIdentifier: com.apple.share-services
